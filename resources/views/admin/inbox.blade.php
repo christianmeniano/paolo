@@ -2,8 +2,6 @@
   @include('partials._head')
   @include('partials._javascript')
 </head>
-
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,7 +27,7 @@
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="{{ route('admin.blog') }}">Blog</a></li>
+                  <li><a href="{{ route('admin.index') }}">Blog</a></li>
                   <li><a href="{{ route('drafts.index') }}">Drafts</a></li>
                   <li><a href="{{ route('inboxadmin.index') }}">Inbox</a></li>
                                   <li>
@@ -52,56 +50,20 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-	
 	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<h1>Create New Post</h1>
+		<div class="col-md-3">
+			<ul class="list-group">
+				@foreach($messages as $message) 
+				<label for="">From: {{$message->email}}</label>            
+				<li class="list-group-item">{{$message->email}}
+				<p>Subject: {{$message->subject}}</p>
+				<a href="{{route('inboxadmin.show', $message->id)}}" class="btn btn-primary btn-block">Read Message</a>
+				</li>
 
-		
-	
-			
-			{!! Form::open(['route' => 'posts.store','data-parsley-validate' => '']) !!}
-
-					<h1>Category</h1>
-
-			<select name="category">
- 	 <option value="Travel">travel</option>
- 	 <option value="Food">food</option>
-  	<option value="Wedding">wedding</option>
- 	 <option value="Personal">personal</option>
-	</select>	
-		<br>
-<input type="checkbox" name="status" value="1">Publish<br>
-	<br>
-      
-    			{{ Form::label('title', 'Title:') }}
-    			{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
-				
-				{{ Form::label('slug', 'Slug:') }}  
-        {{ route('blog.single',null) }}<span id="url"></span>
-        <input type="hidden" name="slug" value=""><br>
-
-    			{{ Form::label('body', 'Post Body:') }}
-    			{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255', 'id' => 'summernote')) }}
-    			{{ Form::hidden('blogger_id', $adminid) }}
-    			<br>
-    			{{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block'))}}
-			{!! Form::close() !!}
+				@endforeach
+			</ul>
 		</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-9">
+		</div>
+		
 	</div>
-
-  <script>
-    $(document).ready(function() {
-    $('#summernote').summernote({height: '300px'});
-  });
-
-    $( "input[name=title]" ).keyup(function() {
-      val = $(this).val();
-      $("#url").html('/'+val);
-      $("input[name=slug]").val(val);
-      
-  });
-  </script>
-

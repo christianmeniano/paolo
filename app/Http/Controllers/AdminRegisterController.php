@@ -34,7 +34,9 @@ class AdminRegisterController extends Controller
             return redirect()->route('login');
         }
          $adminid = session('id');
+
          $admin = Admin::where('id' , '=' , $adminid)->first();
+         session(['email' => $admin->email]);
          $post = Post::join('users', 'posts.blogger_id', '=', 'users.id')
             ->select('users.name', 'posts.*')
             ->get();

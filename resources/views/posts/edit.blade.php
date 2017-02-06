@@ -15,11 +15,12 @@
 				{{ Form::label('title', 'Title:') }}
 				{{ Form::text('title', null, ["class" => "form-control input-lg"]) }}
 				<br>
-				{{ Form::label('slug', 'Slug:') }}
-				{{ Form::text('slug', null, ["class" => "form-control input-lg"]) }}
+				{{ Form::label('slug', 'Slug:') }}	
+				{{ route('blog.single',null) }}<span id="url"></span>
+				<input type="hidden" name="slug" value=""><br>
 				<br>
 				{{ Form::label('body', 'Body:') }}
-				{{ Form::textarea('body', null, ["class" => "form-control"]) }}
+				{{ Form::textarea('body', null, ["class" => "form-control", 'id' => 'summernote']) }}
 				<br>
 				
 			</div>
@@ -78,7 +79,7 @@
 				<input type="hidden" name="slug" value=""><br>
 				<br>
 				{{ Form::label('body', 'Body:') }}
-				{{ Form::textarea('body', null, ["class" => "form-control", 'id' => 'summernote']) }}
+				{{ Form::textarea('body', null, ["class" => "form-control", 'id' => 'summernotes']) }}
 				{{ Form::hidden('status', 'published') }}
 			</div>
 			<div class="col-md-4">
@@ -123,6 +124,10 @@
 
 	$(document).ready(function() {
 	  $('#summernote').summernote({height: '300px'});
+	});
+
+		$(document).ready(function() {
+	  $('#summernotes').summernote({height: '300px'});
 	});
 
 

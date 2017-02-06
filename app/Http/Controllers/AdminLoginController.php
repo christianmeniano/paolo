@@ -29,7 +29,7 @@ class AdminLoginController extends Controller
     public function access(Request $request){
          $admin = Admin::where('email' , '=' , $request->email)->first();
        if ($admin) {
-        session(['id' => $admin->id]);
+        session(['id' => $admin->id, 'email' => $admin->email]);
         return redirect()->route('admin.index');
        }else
          Session::flash('Errors', 'These credentials do not match our records.');

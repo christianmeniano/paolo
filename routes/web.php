@@ -22,7 +22,7 @@ Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 Route::get('contact', 'PagesController@getContact')->name('get.contact');
 Route::get('about', 'PagesController@getAbout');	
 Route::get('/', 'PagesController@getIndex');
-
+Route::resource('inboxadmin', 'AdminInboxController');
 Route::resource('posts', 'PostController');
 Route::resource('comment', 'CommentController');
 Route::resource('user', 'AdminRegisterController');

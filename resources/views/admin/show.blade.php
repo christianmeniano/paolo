@@ -27,7 +27,9 @@
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="{{ route('admin.index') }}">Home</a></li>
+                  <li><a href="{{ route('admin.index') }}">Blog</a></li>
+                  <li><a href="{{ route('drafts.index') }}">Drafts</a></li>
+                  <li><a href="{{ route('inboxadmin.index') }}">Inbox</a></li>
                                   <li>
                         <a href="{{ url('/adminlogout') }}"
                             onclick="event.preventDefault();

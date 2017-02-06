@@ -27,7 +27,9 @@
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
-                 <li><a href="{{ route('admin.blog') }}">Home</a></li>
+                 <li><a href="{{ route('admin.blog') }}">Blog</a></li>
+                 <li><a href="{{ route('drafts.index') }}">Drafts</a></li>
+                  <li><a href="{{ route('inboxadmin.index') }}">Inbox</a></li>
                                   <li>
                         <a href="{{ url('/adminlogout') }}"
                             onclick="event.preventDefault();
@@ -64,7 +66,7 @@
 				{{ Form::text('slug', null, ["class" => "form-control input-lg"]) }}
 				<br>
 				{{ Form::label('body', 'Body:') }}
-				{{ Form::textarea('body', null, ["class" => "form-control"]) }}
+				{{ Form::textarea('body', null, ["class" => "form-control", 'id' => 'summernote']) }}
 			</div>
 			<div class="col-md-4">
 				<div class="well">
@@ -93,3 +95,9 @@
 </div><!-- end row (form)-->
 
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#summernote').summernote({height: '300px'});
+  });
+</script>

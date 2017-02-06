@@ -1,4 +1,4 @@
-<head>
+	<head>
   @include('partials._head')
   @include('partials._javascript')
 </head>
@@ -52,56 +52,25 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-	
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<h1>Create New Post</h1>
-
-		
-	
-			
-			{!! Form::open(['route' => 'posts.store','data-parsley-validate' => '']) !!}
-
-					<h1>Category</h1>
-
-			<select name="category">
- 	 <option value="Travel">travel</option>
- 	 <option value="Food">food</option>
-  	<option value="Wedding">wedding</option>
- 	 <option value="Personal">personal</option>
-	</select>	
-		<br>
-<input type="checkbox" name="status" value="1">Publish<br>
-	<br>
-      
-    			{{ Form::label('title', 'Title:') }}
-    			{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
-				
-				{{ Form::label('slug', 'Slug:') }}  
-        {{ route('blog.single',null) }}<span id="url"></span>
-        <input type="hidden" name="slug" value=""><br>
-
-    			{{ Form::label('body', 'Post Body:') }}
-    			{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255', 'id' => 'summernote')) }}
-    			{{ Form::hidden('blogger_id', $adminid) }}
-    			<br>
-    			{{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block'))}}
-			{!! Form::close() !!}
-		</div>
-		<div class="col-md-2"></div>
+  <h4>From: {{$message->email}}</h4>
+	<p>Subject: {{$message->subject}}</p>
+	<label for="">Message: </label>
+	<div class="well">
+		<label for="">{{$message->email}}</label>
+		<p>{{$message->message}}</p>
 	</div>
-
-  <script>
-    $(document).ready(function() {
-    $('#summernote').summernote({height: '300px'});
-  });
-
-    $( "input[name=title]" ).keyup(function() {
-      val = $(this).val();
-      $("#url").html('/'+val);
-      $("input[name=slug]").val(val);
-      
-  });
-  </script>
-
+	<form action="{{route('inbox.store')}}" method="POST">
+         
+          <div class="form-group">
+              <label for="message">Reply:</label>
+              
+              <textarea type="text" id="message" name="message" class="form-control"></textarea>
+              <br>
+              <input type="submit" value="Send Message" class="btn btn-success">
+          </div>
+           <input type="hidden" name="sender_id" value="{{$admin->id}}}">
+           <input type="hidden" name="recepient_email" value="{{$message->email}}">
+           <input type="hidden" name="subject" value="{{$message->subject}}">
+           <input type="hidden" name="reply" value="1">
+          {!!csrf_field()!!}
+      </form>
