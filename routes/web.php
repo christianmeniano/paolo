@@ -29,7 +29,7 @@ Route::resource('user', 'AdminRegisterController');
 Route::resource('commentdel', 'CommentController');
 
 
-Route::get('adminlogin', ['uses' => 'AdminLoginController@login', 'as' => 'admin.login']);
+Route::get('admin4xcg39op7log', ['uses' => 'AdminLoginController@login', 'as' => 'admin.login']);
 Route::post('adminaccess', ['uses' => 'AdminLoginController@access', 'as' => 'admin.access']);
 
 Route::post('adminlogout', function(){
