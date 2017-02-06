@@ -1,0 +1,1 @@
+<p class="text-center">Copyright blogware - All Rights Reserved</p>
